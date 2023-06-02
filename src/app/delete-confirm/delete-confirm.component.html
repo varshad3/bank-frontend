@@ -1,0 +1,16 @@
+<div *ngIf="deleteAcno" class="container mt-5">
+    <div class="row mt-5">
+        <div class="col-md-4"></div>
+        <div class="col mt-5 text-center text-danger border p-5">
+            <h3 class="text-center">Are you sure !!!  Do you <br> want to delete the<br> account? </h3>
+            <button (click)="deleteFromChild()" class="btn btn-warning">
+                Yes
+            </button>
+            <button (click)="cancel()" class="btn btn-success ms-3">
+                No
+            </button>
+        </div>
+        <div class="col-md-4"></div>
+
+    </div>
+</div>

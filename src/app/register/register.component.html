@@ -1,0 +1,87 @@
+
+<nav class="navbar bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light">
+            <i class="fa-solid fa-building-columns me-2"></i>Swasti Bank
+        </a>
+    </div>
+</nav>
+<!-- register success msg -->
+
+<div *ngIf="registerSuccessMsg" style="width:100%; height:100vh;" class="container d-flex justify-content-center align-item-center text-center">
+    <h3 class="text-primary">
+        <img style="width:50px; height:50px;" src="https://www.professionals.co.nz/hubfs/2020%20images/Property%20feature%20images/loading-gif.gif" alt="spinner">
+        Your data's are getting registered...please wait...
+    </h3>
+</div>
+
+<!-- register design -->
+<div *ngIf="!registerSuccessMsg">
+    <div class="container-fluid mt-3">
+        <h2 class="text-success text-center">Account OPening Form</h2>
+        <p style="text-align: justify;" class="mt-4">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae nisi, omnis ullam eligendi fuga, autem voluptates veritatis accusantium non velit alias porro, rem voluptas ut dolores enim vero. Expedita, excepturi?
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero assumenda tempore corrupti numquam hic, corporis molestiae animi odit incidunt a, labore soluta. Hic commodi possimus nam. Eum autem sed vitae.</p>
+    </div>
+    
+    <div class="container">    
+    
+        <div class="row">
+            <div class="col-lg-4 mt-5">
+                <!-- form -->
+                
+                <form [formGroup]="registerForm" class="border p-3 rounded" (ngSubmit)="register()">
+                <h3 class="mb-3 text-center">Register Form</h3>
+    
+                <div class="form-floating mb-3">
+                    <input name="username" formControlName="username" type="text" class="form-control" id="floatingInputacno" placeholder="account number">
+                    <label for="floatingInput">username</label>
+                </div>
+                <!-- username error msg -->
+                <div *ngIf="this.registerForm.get('username')?.errors&&this.registerForm.get('username')?.touched"
+                 class="text-danger mb-3">Invalid username </div>
+    
+    
+    
+                <div class="form-floating mb-3">
+                    <input name="acno" formControlName="acno" type="text" class="form-control" id="floatingPasssword" placeholder="password">
+                    <label for="floatingPassword">Account number</label>
+                </div>
+                <!-- accountnumber error msg -->
+                <div *ngIf="this.registerForm.get('acno')?.errors&&this.registerForm.get('acno')?.touched"
+                 class="text-danger mb-3">Invalid Account Number </div>
+    
+                <div class="form-floating mb-3">
+                    <input name="password" formControlName="password" type="password" class="form-control" id="floatingPasssword" placeholder="password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <!-- password error msg -->
+                <div *ngIf="this.registerForm.get('password')?.errors&&this.registerForm.get('password')?.touched"
+                 class="text-danger mb-3">Invalid password </div>
+    
+                 <!-- display register msg -->
+    
+                 <div class="mt-2 mb-2 text-danger fw-bolder">
+                    {{registerErrorMsg}}
+                 </div>
+                 <div class="mt-4">
+                    <button type="submit" class="btn btn-success me-3">Register</button>
+                    <span>
+                        Already a user?click hear to <a routerLink="">Log In</a>
+                    </span>
+                </div>
+                </form>
+                </div>
+    
+            <div class="col-lg-8 mt-2 text-center">
+        <!-- image -->
+                <img src="https://tse3.mm.bing.net/th?id=OIP.US9lANuFiFFGFtoYMHxkdgHaEz&pid=Api&P=0" alt="">
+                </div>
+               
+    </div>
+    </div>
+                       
+</div>
+            
+          
+    

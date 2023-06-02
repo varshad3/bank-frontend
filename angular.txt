@@ -1,0 +1,100 @@
+
+
+                Angular - front end technology
+
+
+
+        - Basic commands
+
+            1.to install angular cli : npm i -g @angular/cli
+            2.to create project : ng new demo-project
+            3.to run a project : ng serve
+            4.to create angular version : ng v
+            5.to generate component : ng g c component-name
+            6.to generate services : ng g s services-folder/service-name
+            7. to generate pipes  : ng g p 
+
+        - Basic Building blocks of angular
+
+            1. Module : root module : AppModule
+            2. Component : html,css,typescript(ts) : AppComponent  ( it have the selector ,template and )
+            3. Decorator
+            4. to set up path for component : AppRoutingModule in routes arrya
+                        {
+                            path:' component path' ,compoenet:component-name
+                        }
+                    use router-outlet selector in AppComponent.html : to change according to the user
+
+            5.Data binding : sharing data with in a component 
+            -One way Binding :data sharing will be held in one direction at a time  
+
+                -ts(component) to html(view)
+
+                    -string interpolation : {{property-name}} in html
+                    -property binding : [attribute-name] ="property name"
+
+                -html(view) to ts (component) 
+
+                    -Event Binding : (event-name)= "function-call()" 
+                    -Event Binding using $event : (event-name) = "function-call($event)"
+                    -Event Binding using template reference : #variable-name,(event-name) = "function-call(variable-name)"
+
+            -Two Way Binding : data sharing will be held in Two direction at a time 
+
+                    -using ngModel : [(ngModel)] = "property-name" if it is inside a form tag then set the name property of
+                     that input tag
+                            - import FormsModule in AppModule
+
+            6.Dependency Injection : it define inside  the constructor of a clsss
+
+                syntax : access-specifier variable-name :dependent-class-name
+
+                 access-specifier : public,private,protected
+
+            7. Angular services : share common logic between components
+            8. Directives : DOM Manipulation 
+                -component Directives : 
+                -Structural Directives : to add or remove html elements based on the class property
+                    -syntax :  *ngFor = "let variable-name of arrya-name" in html
+                    
+                    (we want to use some condition in the angular we use if condition ,bt in angular we use ngIf)
+
+                    -syntax : *ngIf = 
+
+
+            9. Asynchronous call - resoling 
+                    - RxJS -reactive extension for java script
+                    - to resolve asynchronous function in angular uses
+
+                            - Observable : 
+                                - subscribe(observer:callback function)
+
+             [   API call in javascript as (fetch and asyc await)   ]
+            
+            10. API call : 
+                  - import HttpClientModule to AppModule
+                  - Dependency Inject HttpClient  to get http request
+
+            11.ActivatedRoute : Provides access to information about a route associated with a component that is loaded in an outlet.
+
+                    -params : to get the path parameter from the url.
+
+            12.Angular Pipe  : pransform use input to another format
+                -syntax :
+                        {{ value_expression | date [ : format [ : timezone [ : locale ] ] ] }}
+
+            13.Angular Forms :
+                    -Template Driven forms : using ngModel to binding
+                        -validation in template Driven forms
+                    -model Driven forms : create a model for form in ts file first 
+                        -eg. reactive Forms : to apply user input validate,import reactiveformsmodule
+                                -Form group : dependancy inject formBuider class
+                                -form array : 
+                                -form controlName :
+            14.angular with material design
+
+             15. communichation between parent and child
+                  - 1. child to parent : output Decorator
+                  - 2. paremt to child : input Decorator
+            16. EventEmitter - to generate userdefined event
+                - to occur an userdefined event use emit()

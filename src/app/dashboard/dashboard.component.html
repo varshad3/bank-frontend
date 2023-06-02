@@ -1,0 +1,165 @@
+
+<!-- navbar -->
+
+<nav *ngIf="!deleteConfirmStatus" class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+    <div class="col-lg-10">
+    
+            <a class="navbar-brand text-light">
+                <i class="fa-solid fa-building-columns me-2"></i>Swasti Bank
+            </a>
+            
+    </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu">
+              <li><a (click)="getBalance()" class="dropdown-item" data-bs-toggle="offcanvas" href="#offcanvasExample">Balance Enquiry</a></li>
+              <li><a class="dropdown-item btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Fund Transfer</a></li>
+              <li><a class="dropdown-item" routerLink="/transaction">Mini Statements</a></li>
+
+              <li><hr class="dropdown-divider"></li>
+              <li><a (click)="deleteAccount()" class="dropdown-item btn">
+                <i class="fa-solid fa-trash me-1"></i>
+                My Account
+              </a></li>
+              <li><a class="dropdown-item btn" (click)="logout()">
+                <i class="fa-solid fa-right-from-bracket me-1"></i>
+                Log Out
+              </a></li>
+            </ul>
+          </li>
+        </ul>
+        
+      </div>
+      
+    </div>
+  </nav>
+
+  <!-- logout div -->
+  <div *ngIf="logoutStatus" style="width: 100%; height: 100vh;" class="d-flex justify-content-center align-items-center">
+    <h1 class="text-primary text-center">Please Wait.... <br> 
+      while your logging out!!!</h1>
+  </div>
+
+   <!-- deletescuccessmessage -->
+   <div *ngIf="deleteSuccessMessage" style="width: 100%; height: 100vh;" class="d-flex justify-content-center align-items-center">
+    <h1 class="text-danger text-center"><img style="width:50px; height:50px;" src="https://www.professionals.co.nz/hubfs/2020%20images/Property%20feature%20images/loading-gif.gif" alt="spinner">
+      {{deleteSuccessMessage}}</h1>
+  </div>
+
+
+
+  <!-- delete conformation view -->
+  <div>
+    <app-delete-confirm (onCancel)="cancelDeleteConfirm()" (onDelete)="deleteFromParent()" [deleteAcno]="acno">
+
+    </app-delete-confirm>
+  </div>
+
+  <!-- dashboard design -->
+
+  <div *ngIf="!deleteConfirmStatus" class="container">
+    <div *ngIf="!logoutStatus" class="row">
+        <div class="col-md-4">
+            <!-- content -->
+            <h1 style="margin-top: 100px;">Welcome {{user}}</h1>
+            <label style="text-align: justify;" class="mt-2"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum minus omnis doloremque sint deserunt quasi voluptatem libero, earum nihil sequi totam possimus soluta. Animi iusto sed in obcaecati alias! Quaerat.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, rerum. Perferendis non dolor nemo a nam sed, ipsam modi deleniti odio ipsum voluptatibus error iusto ratione tenetur iste, repellendus necessitatibus.
+            </label>
+            <div style="text-align: justify;" class="collapse" id="collapseExample">
+               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae ut saepe id? Molestiae expedita nemo dicta, facere repellendus animi delectus temporibus quod, laboriosam id, minus voluptas at! Quam, velit totam!
+               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique animi voluptatem veniam blanditiis dolores doloremque consectetur magnam! Dolores perspiciatis optio officia rerum culpa, dolor ipsa nostrum magnam? Est, aspernatur inventore.
+              </div>
+            <button (click)="collapse()" data-bs-toggle="collapse" data-bs-target="#collapseExample" class="btn btn-primary mt-2">Read 
+            <span *ngIf="isCollapse">More</span>
+            <span *ngIf="!isCollapse">Less</span>
+        </button>
+        </div>
+        <div class="col-md-8">
+            <!-- image -->
+            <img width="100%" src="https://tse3.mm.bing.net/th?id=OIP.US9lANuFiFFGFtoYMHxkdgHaEz&pid=Api&P=0" alt="online banking">
+        </div>
+    </div>
+  </div>
+
+  <!-- balance enquiry offcanvas -->
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Balance Enquiry</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- image -->
+      <img class="w-75 ms-5 mt-5" src="https://tse1.mm.bing.net/th?id=OIP.GHIiS28_A3wpndkuh8HTGAAAAA&pid=Api&P=0" alt="balance">
+      <div class="mt-5">
+        <h3>Hi {{user}},</h3>
+        <p>Your current balance is <span class="text-danger">Rs.{{balance}}</span> </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- model used for fund transefer -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Fund Transfer Form</h1>
+          <button type="button" (click)="closeFundtransferform()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="mt-2 mb-2">
+            <img style="width: 100% ;" src="https://tse3.mm.bing.net/th?id=OIP.h6h2Wkhs0pkgPeyn7xcN5wHaC_&pid=Api&P=0" alt="fund">
+          </div>
+            <!-- reactive form  -->
+
+        <form [formGroup]="fundtransferForm">
+            <!-- credit acno -->
+            <div class="form-floating mb-3">
+                <input name="creditAcno" formControlName="creditAcno" type="number" class="form-control" id="floatingInput" placeholder="credit account">
+                <label for="floatingInput">Credit Account</label>
+              </div>
+              <!-- credit acno error msg -->
+              <div *ngIf="this.fundtransferForm.get('creditAcno')?.errors&&this.fundtransferForm.get('creditAcno')?.touched" class="text-danger mb-3">invalid credit account number</div>
+
+            <!-- amount -->
+            <div class="form-floating">
+                <input name="amount" formControlName="amount"  type="number" class="form-control" id="floatingPassword" placeholder="Amount">
+                <label for="floatingPassword">Amount</label>
+              </div>
+              <!-- amount error msg -->
+              <div *ngIf="this.fundtransferForm.get('amount')?.errors&&this.fundtransferForm.get('amount')?.touched" class="text-danger mb-3">invalid amount</div>
+
+            <!-- profile password -->
+            <div class="form-floating">
+                <input name="Password" formControlName="Password"  type="password" class="form-control" id="floatingPassword" placeholder="Profile">
+                <label for="floatingPassword"> Profile Password</label>
+              </div>
+              <!-- password error msg -->
+              <div *ngIf="this.fundtransferForm.get('Password')?.errors&&this.fundtransferForm.get('Password')?.touched" class="text-danger mb-3">invalid profile password</div>
+
+        </form>
+        </div>
+                <!-- success message -->
+       <div class="mt-2 mb-2 text-success fs-3 fw-bolder">{{transferSuccessMsg}}</div>
+
+        <!-- error message -->
+       <div class="mt-2 mb-2 text-danger fs-3 fw-bolder">{{transferErrorMsg}}</div>
+          <div class="modal-footer">
+            <button type="button" (click)="closeFundtransferform()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" (click)="transfer()" class="btn btn-primary">Transfer</button>
+          </div>
+       
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,66 @@
+
+<nav class="navbar bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light">
+            <i class="fa-solid fa-building-columns me-2"></i>Swasti Bank
+        </a>
+    </div>
+</nav>
+
+<!-- login design -->
+<div class="container-fluid mt-3">
+    <p style="text-align: justify;">
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae nisi, omnis ullam eligendi fuga, autem voluptates veritatis accusantium non velit alias porro, rem voluptas ut dolores enim vero. Expedita, excepturi?
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero assumenda tempore corrupti numquam hic, corporis molestiae animi odit incidunt a, labore soluta. Hic commodi possimus nam. Eum autem sed vitae.</p>
+</div>
+
+<div class="container">    
+
+    <div class="row">
+        <div class="col-lg-8 mt-5 text-center">
+    <!-- image -->
+            <img src="https://tse3.mm.bing.net/th?id=OIP.9-BU3Qn9ygjq_Hzai-MaRAHaE8&pid=Api&P=0" alt="">
+            </div>
+            <div class="col-lg-4">
+<!-- form -->
+
+<form [formGroup]="loginForm" class="border p-3" (ngSubmit)="login()">
+<h3 class="mb-3 text-center">Login Form</h3>
+<div class="form-floating mb-3">
+    <input name="acno" formControlName="acno"  type="text" class="form-control" id="floatingInputacno" placeholder="account number">
+    <label for="floatingInput">Account number</label>
+</div>
+            <!-- accountnumber error msg -->
+            <div *ngIf="this.loginForm.get('acno')?.errors&&this.loginForm.get('acno')?.touched"
+             class="text-danger mb-3">Invalid Account Number </div>
+
+<div class="form-floating">
+    <input name="password" formControlName="password"  type="password" class="form-control" id="floatingPasssword" placeholder="password">
+    <label for="floatingPassword">Password</label>
+</div>
+            <!-- accountnumber error msg -->
+            <div *ngIf="this.loginForm.get('acno')?.errors&&this.loginForm.get('acno')?.touched"
+             class="text-danger mb-3">Invalid Account Number </div>
+             <!-- login error message -->
+             <div class="mt-2 mb-2 text-danger fw-bolder">
+                {{loginErrorMsg}}
+             </div>
+
+<div class="mt-4">
+    <button  type="submit" class="btn btn-primary me-3">Login 
+        <!-- spinner -->
+        <div *ngIf="loginSuccessStatus" class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </button>
+    <span>
+        new user?click hear to <a routerLink="register">Register</a>
+    </span>
+</div>
+</form>
+</div>
+</div>
+                   
+            
+          
+    
